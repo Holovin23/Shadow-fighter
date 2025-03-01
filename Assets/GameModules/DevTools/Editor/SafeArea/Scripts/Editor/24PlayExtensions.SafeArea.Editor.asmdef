@@ -1,0 +1,19 @@
+{
+    "name": "24PlayExtensions.SafeArea.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fa87cab377dfb5542ab7c5ed50f12748",
+        "GUID:2b03be8ef6e6d634aa3fdbff377f070a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,18 @@
+{
+    "name": "24PlayExtensions.RatePopup.Custom",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0fe5979c23506624d94ae63a3758c1f9",
+        "GUID:f942ad409c710ae4db7680a138fab3e7",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
