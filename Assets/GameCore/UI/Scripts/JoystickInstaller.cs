@@ -7,7 +7,7 @@ public class JoystickInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<Joystick>().FromInstance(_joystick);
+        Container.Bind<Joystick>().FromInstance(_joystick).AsSingle();
     }
     
 }
