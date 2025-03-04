@@ -36,7 +36,6 @@ public class PlayerCharacter : Character
     {
         if (Vector3.Distance(_target.transform.position, transform.position) < 5f)
         {
-            Debug.Log("Combat");
             isInCombat = true;
             _animator.SetCombat(isInCombat);
             _playerMovementController.SetCombatState(isInCombat);
@@ -44,7 +43,6 @@ public class PlayerCharacter : Character
         }
         else
         {
-            Debug.Log("No Combat");
             isInCombat = false;
             _animator.SetCombat(isInCombat);
             _playerMovementController.SetCombatState(isInCombat);
