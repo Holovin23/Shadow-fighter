@@ -1,4 +1,5 @@
 using DG.Tweening;
+using TFPlay.Modules.Core.TickService;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -6,6 +7,7 @@ using Zenject;
 public class Enemy : Character
 {
     [Inject] private IColliderService _colliderHolder;
+    [Inject] private SignalBus _signalBus;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     public float AttackRange = 2f;
     public float StunTime = 3f;
@@ -18,6 +20,7 @@ public class Enemy : Character
 
     private void Awake()
     {
+        _signalBus.Subscribe<TickSignal>(UpdateByTick);
         stateMachine = new EnemyStateMachine(this);
         DOVirtual.DelayedCall(7f, () =>
         {
@@ -26,10 +29,14 @@ public class Enemy : Character
         });
     }
 
-    private void Update()
+    private void UpdateByTick(TickSignal tickSignal)
     {
         stateMachine.Update();
     }
+    /*private void Update()
+    {
+        stateMachine.Update();
+    }*/
 
     public void ResetEnemy()
     {
@@ -45,6 +52,7 @@ public class Enemy : Character
 
     public void Die()
     {
+        _signalBus.Unsubscribe<TickSignal>(UpdateByTick);
         Agent.enabled = false;
         Debug.Log("Враг умер!");
     }

@@ -11,7 +11,7 @@ public class StunState : EnemyState
     public override void Enter()
     {
         enemy.Agent.isStopped = true;
-        enemy.Animator.SetStun(); // Если у тебя есть анимация оглушения
+        enemy.Animator.SetStun();
 
         stunDuration = enemy.StunTime;
         stunCoroutine = enemy.StartCoroutine(StunTimer());
@@ -20,7 +20,7 @@ public class StunState : EnemyState
     private IEnumerator StunTimer()
     {
         yield return new WaitForSeconds(stunDuration);
-        stateMachine.ChangeState(EnemyStateType.Chase); // После оглушения враг продолжает преследование
+        stateMachine.ChangeState(EnemyStateType.Chase);
     }
 
     public override void Update() { }

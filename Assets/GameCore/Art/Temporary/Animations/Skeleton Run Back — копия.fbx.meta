@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 955bb1fb879116d4c896078dc02e3b80
+guid: 8a46a48b101d24e439ada8e60cb2ec91
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      internalID: 1827226128182048838
+      name: Skeleton Run Back
+      takeName: Skeleton Run Back
+      internalID: 4351273706729985
       firstFrame: 0
-      lastFrame: 27
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

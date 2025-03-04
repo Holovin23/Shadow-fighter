@@ -7,4 +7,6 @@ public interface IMovementProvider
     public event Action<Vector2> OnSpeedXY;
     
     void Init();
+    void SetCombatState(bool isCombat);
+    void SetTarget(Transform target);
 }

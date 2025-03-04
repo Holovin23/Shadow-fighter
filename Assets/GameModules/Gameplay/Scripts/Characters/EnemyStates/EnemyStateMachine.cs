@@ -14,7 +14,7 @@ public class EnemyStateMachine
             { EnemyStateType.Chase, new ChaseState(this, enemy) },
             { EnemyStateType.Attack, new AttackState(this, enemy) },
             { EnemyStateType.Death, new DeathState(this, enemy) },
-            { EnemyStateType.Stun, new StunState(this, enemy) } // Добавили Stun
+            { EnemyStateType.Stun, new StunState(this, enemy) }
         };
     }
 
