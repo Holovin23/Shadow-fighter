@@ -38,7 +38,7 @@ namespace GameModules.Gameplay.Scripts.Characters.Health
 
             OnValueRemoved?.Invoke(this, value);
             OnValueChanged?.Invoke(this, Value);
-
+            Debug.Log($"Health: {Value}");
             if (IsDeadlyValue())
                 OnDeathValue?.Invoke(this);
         }

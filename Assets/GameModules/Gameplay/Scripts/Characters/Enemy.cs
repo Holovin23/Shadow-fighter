@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using GameModules.Gameplay.Scripts.Characters.Damage;
+using GameModules.Gameplay.Scripts.Characters.Health;
 using TFPlay.Modules.Core.TickService;
 using UnityEngine;
 using UnityEngine.AI;
@@ -41,7 +42,13 @@ public class Enemy : Character , IDamageable
     {
         stateMachine.Update();
     }*/
-
+    
+    protected override void OnDeathValue(IHealthProvider value)
+    {
+        base.OnDeathValue(value);
+        stateMachine.ChangeState(EnemyStateType.Death);
+    }
+    
     public void ResetEnemy()
     {
         //transform.position = new Vector3(0, 0, 0);

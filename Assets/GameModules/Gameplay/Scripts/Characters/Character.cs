@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks.Triggers;
+using GameModules.Gameplay.Scripts.Characters;
 using GameModules.Gameplay.Scripts.Characters.Damage;
 using GameModules.Gameplay.Scripts.Characters.Health;
 using GameModules.Gameplay.Scripts.Characters.Stats;
@@ -10,6 +11,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
 {
     [SerializeField] protected Health _health;
     [SerializeField] private StatsConfig _stats;
+    [SerializeField] private AttackController _attackController;
     
     protected IAnimatorProvider _animator;
     public event Action<IDamageable> OnDeath;
@@ -29,12 +31,20 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
         StatsProvider = _stats.CreateCopy();
         _health.Initialize(StatsProvider.GetStat(StatType.Health));
         _animator = GetComponentInChildren<IAnimatorProvider>();
+        _attackController.Initialize(this);
+        HealthProvider.OnDeathValue += OnDeathValue;
+    }
+
+    protected virtual void OnDeathValue(IHealthProvider value)
+    {
+        OnDeath?.Invoke(this);
     }
     
     public virtual void HandleDamage(IDamageData damageData)
     {
         HealthProvider.Remove((int)damageData.GetDamageValue());
         OnHit?.Invoke(this, damageData);
+        Debug.Log("Get damage called");
     }
 
     protected virtual void Die()

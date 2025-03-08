@@ -4,6 +4,7 @@ namespace GameModules.Gameplay.Scripts.Characters.Health
 {
     public interface IHealthProvider
     {
+        public event Action<IHealthProvider> OnDeathValue;
         public event Action<IHealthProvider, float> OnValueChanged;
         public event Action<IHealthProvider, float> OnValueAdded;
         public event Action<IHealthProvider, float> OnValueRemoved;
