@@ -10,7 +10,8 @@ namespace GameModules.Gameplay.Scripts.Characters
         [SerializeField] private List<TriggerArea> _triggerAreas = new List<TriggerArea>();
         [SerializeField] private  List<StayColliderTrigger> _meleeClosestEnemiesDetector = new List<StayColliderTrigger>();
         [SerializeField] private float _attackDelay = 1f;
-        
+
+        private IAnimatorProvider _animator;
         private float lastAttackTime;
         private bool _isReadyAttack;
         private void Update()
@@ -25,7 +26,7 @@ namespace GameModules.Gameplay.Scripts.Characters
         public override void Initialize(Character owner)
         {
             base.Initialize(owner);
-            
+            _animator = owner.AnimatorProvider;
             foreach (var enterTrigger in _meleeClosestEnemiesDetector)
             {
                 enterTrigger.OnInteraction += EnemyInMeleeRangeAttackRange;
@@ -51,6 +52,8 @@ namespace GameModules.Gameplay.Scripts.Characters
             Debug.Log("Attacked");
             lastAttackTime = Time.time;
             _isReadyAttack = false;
+            
+            _animator.StartAttack();
             
             foreach (var areas in _triggerAreas)
             {

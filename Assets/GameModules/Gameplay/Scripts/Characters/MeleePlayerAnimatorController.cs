@@ -10,5 +10,10 @@ using UnityEngine;
      public override void SetSpeedTwoDimension(Vector2 value)
      {
      }
-
+        
+     public override void StartAttack()
+     {
+         // animator.SetTrigger("Attack");
+     }
+     
 }

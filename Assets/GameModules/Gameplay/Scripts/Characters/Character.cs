@@ -20,6 +20,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
     public bool IsDead { get; private set; }
     public IStatsProvider StatsProvider { get; private set; }
     public IHealthProvider HealthProvider => _health;
+    public IAnimatorProvider AnimatorProvider => _animator;
     
     private void Start()
     {
@@ -44,7 +45,6 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
     {
         HealthProvider.Remove((int)damageData.GetDamageValue());
         OnHit?.Invoke(this, damageData);
-        Debug.Log("Get damage called");
     }
 
     protected virtual void Die()
