@@ -57,7 +57,7 @@ public class Enemy : Character , IDamageable
 
     public void Attack()
     {
-        Animator?.StartAttack();
+        //Animator?.StartAttack();
         Debug.Log("Враг атакует игрока!");
     }
 

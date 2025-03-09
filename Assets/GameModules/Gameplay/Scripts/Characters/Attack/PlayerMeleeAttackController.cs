@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GameModules.Gameplay.Scripts.Characters.AnimatorsScripts;
 using GameModules.Gameplay.Scripts.Characters.Damage;
+using TFPlay.SceneFader;
 using UnityEngine;
 
 namespace GameModules.Gameplay.Scripts.Characters
@@ -11,7 +13,8 @@ namespace GameModules.Gameplay.Scripts.Characters
         [SerializeField] private  List<StayColliderTrigger> _meleeClosestEnemiesDetector = new List<StayColliderTrigger>();
         [SerializeField] private float _attackDelay = 1f;
 
-        private IAnimatorProvider _animator;
+        private IAnimatorProvider _animatorProvider;
+        private IAnimatorReader _animatorReader;
         private float lastAttackTime;
         private bool _isReadyAttack;
         private void Update()
@@ -26,7 +29,13 @@ namespace GameModules.Gameplay.Scripts.Characters
         public override void Initialize(Character owner)
         {
             base.Initialize(owner);
-            _animator = owner.AnimatorProvider;
+            _animatorProvider = owner.AnimatorProvider;
+            _animatorReader = owner.AnimationEventsReader;
+            
+            _animatorReader.OnAttackStarted += EventsReader_OnAttackStarted;
+            _animatorReader.OnAttackReleased += EventsReader_OnAttackReleased;
+            _animatorReader.OnAttackEnded += EventsReader_OnAttackEnded;
+            
             foreach (var enterTrigger in _meleeClosestEnemiesDetector)
             {
                 enterTrigger.OnInteraction += EnemyInMeleeRangeAttackRange;
@@ -52,9 +61,12 @@ namespace GameModules.Gameplay.Scripts.Characters
             Debug.Log("Attacked");
             lastAttackTime = Time.time;
             _isReadyAttack = false;
-            
-            _animator.StartAttack();
-            
+
+            _animatorProvider.StartAttack();
+        }
+
+        private void Attack()
+        {
             foreach (var areas in _triggerAreas)
             {
                 foreach (var collider in areas.Cast())
@@ -65,6 +77,32 @@ namespace GameModules.Gameplay.Scripts.Characters
                     Debug.Log(character.gameObject.name);
                 }
             }
+        }
+        
+        private void EventsReader_OnAttackStarted()
+        {
+            /*canExit = false;
+            weaponProvider.Weapon.InvokeOnAttackStart();*/
+        }
+
+        private void EventsReader_OnAttackReleased()
+        {
+            Attack();
+        }
+
+        private void EventsReader_OnAttackEnded()
+        {
+            /*EndAttack();
+            isAttackInProgress = false;
+            canExit = true;*/
+            _animatorProvider.StopAttack();
+        }
+
+        private void OnDestroy()
+        {
+            _animatorReader.OnAttackStarted -= EventsReader_OnAttackStarted;
+            _animatorReader.OnAttackReleased -= EventsReader_OnAttackReleased;
+            _animatorReader.OnAttackEnded -= EventsReader_OnAttackEnded;
         }
     }
 }

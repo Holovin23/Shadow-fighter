@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks.Triggers;
 using GameModules.Gameplay.Scripts.Characters;
+using GameModules.Gameplay.Scripts.Characters.AnimatorsScripts;
 using GameModules.Gameplay.Scripts.Characters.Damage;
 using GameModules.Gameplay.Scripts.Characters.Health;
 using GameModules.Gameplay.Scripts.Characters.Stats;
@@ -12,6 +13,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
     [SerializeField] protected Health _health;
     [SerializeField] private StatsConfig _stats;
     [SerializeField] private AttackController _attackController;
+    [SerializeField] private CombatAnimationEventsReader _animationEventsReader;
     
     protected IAnimatorProvider _animator;
     public event Action<IDamageable> OnDeath;
@@ -21,6 +23,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
     public IStatsProvider StatsProvider { get; private set; }
     public IHealthProvider HealthProvider => _health;
     public IAnimatorProvider AnimatorProvider => _animator;
+    public IAnimatorReader AnimationEventsReader => _animationEventsReader;
     
     private void Start()
     {
