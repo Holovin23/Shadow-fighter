@@ -33,7 +33,11 @@ namespace Pooling
         public T Spawn<T>(T prefab) where T : Component
         {
             Pool pool = GetPool(prefab);
-            T item = pool.Spawn(prefab);
+            if (!pool.HasItemsToSpawn())
+            {
+                pool.CreateNewItem();
+            }
+            T item = pool.Spawn(prefab); 
             _links.Add(item.gameObject, pool);
             return item;
         }

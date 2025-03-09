@@ -85,7 +85,7 @@ namespace Pooling
             return item;
         }
 
-        private Component CreateNewItem()
+        public Component CreateNewItem()
         {
             var capacity = _poolConfiguration.Capacity;
             if (capacity != 0 && capacity <= _totalItems.Count)

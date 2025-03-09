@@ -8,13 +8,14 @@ public class DeathState : EnemyState
     public override void Enter()
     {
         enemy.Die();
-        enemy.StartCoroutine(RespawnRoutine());
+        stateMachine.ChangeState(EnemyStateType.Pool);
+       // enemy.StartCoroutine(RespawnRoutine());
     }
 
     private IEnumerator RespawnRoutine()
     {
-        yield return new WaitForSeconds(2f); // Задержка перед респавном
-        stateMachine.ChangeState(EnemyStateType.Pool);
+        yield return new WaitForSeconds(1f); // Задержка перед респавном
+        
     }
 
     public override void Update() { }

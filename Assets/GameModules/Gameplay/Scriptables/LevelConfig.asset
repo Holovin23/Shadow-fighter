@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36dd42ee0c6425f845550b94b6fc203, type: 3}
+  m_Name: LevelConfig
+  m_EditorClassIdentifier: 
+  waves:
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 5
+    enemiesCount: 5
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 7
+    enemiesCount: 7
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 10
+    enemiesCount: 10
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 20
+    enemiesCount: 20
+    enemiesWaveType: 0
+    isBossWave: 0
+  timeToFirstWave: 3

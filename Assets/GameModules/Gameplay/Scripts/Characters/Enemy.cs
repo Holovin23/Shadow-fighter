@@ -22,15 +22,11 @@ public class Enemy : Character , IDamageable
 
     private EnemyStateMachine stateMachine;
 
-    private void Awake()
+    public void Initialize()
     {
         _signalBus.Subscribe<TickSignal>(UpdateByTick);
         stateMachine = new EnemyStateMachine(this);
-        DOVirtual.DelayedCall(7f, () =>
-        {
-            Debug.Log("Spawn");
-            Spawn();
-        });
+        Spawn();
         _colliderHolder.AddCharacter(_mainCollider, this);
     }
 
