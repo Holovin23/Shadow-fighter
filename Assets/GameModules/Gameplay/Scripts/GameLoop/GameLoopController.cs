@@ -8,6 +8,7 @@ public class GameLoopController : MonoBehaviour
 {
     [Inject] private SignalBus _signalBus;
     [Inject] private IPoolService _poolService;
+    [Inject] private IColliderService _colliderService;
     [SerializeField] private LevelConfig _levelConfig;
     [SerializeField] private Vector2 _mapSize = new Vector2(10,10);
     [SerializeField] private SpawnPoints _spawnPoints;
@@ -25,7 +26,7 @@ public class GameLoopController : MonoBehaviour
     private void Init()
     {
         timeToNextWave = _levelConfig.timeToFirstWave;
-        _enemyFactory = new EnemyFactory(_poolService,_spawnPoints);
+        _enemyFactory = new EnemyFactory(_poolService,_colliderService);
         _signalBus.Subscribe<TickSignal>(UpdateByTick);
     }
 

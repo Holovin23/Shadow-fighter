@@ -22,7 +22,9 @@ public class AttackState : EnemyState
         {
             stateMachine.ChangeState(EnemyStateType.Chase);
         }
-
+        
+        enemy.transform.LookAt(enemy.ColliderHolder.Player.transform.position);
+        
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             lastAttackTime = Time.time;

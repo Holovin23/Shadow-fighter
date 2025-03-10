@@ -22,7 +22,10 @@ namespace GameModules.Gameplay.Scripts.Characters
             if (Time.time - lastAttackTime >= _attackDelay && !_isReadyAttack)
             {
                 _isReadyAttack = true;
-                Debug.Log(_isReadyAttack);
+                lastAttackTime = Time.time;
+                _isReadyAttack = false;
+
+                _animatorProvider.StartAttack();
             }
         }
 

@@ -37,4 +37,34 @@ MonoBehaviour:
     enemiesCount: 20
     enemiesWaveType: 0
     isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 20
+    enemiesCount: 20
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 20
+    enemiesCount: 20
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 20
+    enemiesCount: 20
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 20
+    enemiesCount: 20
+    enemiesWaveType: 0
+    isBossWave: 0
+  - enemies:
+    - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}
+    timeAfterWave: 20
+    enemiesCount: 20
+    enemiesWaveType: 0
+    isBossWave: 0
   timeToFirstWave: 3

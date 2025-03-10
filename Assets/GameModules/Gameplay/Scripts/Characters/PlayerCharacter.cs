@@ -39,7 +39,7 @@ public class PlayerCharacter : Character
 
     private void Update()
     {
-        if (Vector3.Distance(_target.transform.position, transform.position) < 5f)
+        /*if (Vector3.Distance(_target.transform.position, transform.position) < 5f)
         {
             isInCombat = true;
             _animator.SetCombat(isInCombat);
@@ -52,7 +52,7 @@ public class PlayerCharacter : Character
             _animator.SetCombat(isInCombat);
             _playerMovementController.SetCombatState(isInCombat);
             _playerMovementController.SetTarget(null);
-        }
+        }*/
     }
 
 }
