@@ -12,14 +12,15 @@ public class PlayerCharacter : Character
     [SerializeField] private Enemy _target; //TODO remove
     
     [Inject] private IColliderService _colliderService;
-    protected IMovementProvider _playerMovementController;
+    [SerializeField] private PlayerMovementController _playerMovementController;
+    
     private bool isInCombat;
     
+    public IMovementProvider PlayerMovementController => _playerMovementController;
 
     protected override void Init()
     {
         base.Init();
-        _playerMovementController = GetComponent<IMovementProvider>();
         _playerMovementController.OnSpeed += OnSpeed_PlayerMovement;
         _playerMovementController.OnSpeedXY += OnSpeed_PlayerMovementXY;
         _playerMovementController.Init();

@@ -242,6 +242,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5583494168657303667, guid: 39491a5d09650fa45b9d08434ec881f4,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583494168657303667, guid: 39491a5d09650fa45b9d08434ec881f4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583494168657303667, guid: 39491a5d09650fa45b9d08434ec881f4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583494168657303667, guid: 39491a5d09650fa45b9d08434ec881f4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2960
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -400,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ea9cb5a75f346f48e8c76af21e0126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 630081413}
+  target: {fileID: 1332024192}
   offset: {x: 0, y: 20, z: -10}
   followSpeed: 5
 --- !u!1 &84740473
@@ -919,7 +939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &630081411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,6 +1019,7 @@ MonoBehaviour:
   _attackController: {fileID: 630081416}
   _animationEventsReader: {fileID: 1888773358}
   _target: {fileID: 1000243095}
+  _playerMovementController: {fileID: 630081411}
 --- !u!114 &630081415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,13 +1505,14 @@ GameObject:
   - component: {fileID: 1332024190}
   - component: {fileID: 1332024189}
   - component: {fileID: 1332024193}
+  - component: {fileID: 1332024194}
   m_Layer: 0
   m_Name: Player_Ranged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1332024189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,9 +1527,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 630081415}
   _stats: {fileID: 11400000, guid: e020e2c48ab2ae74087e15adf96b1a03, type: 2}
-  _attackController: {fileID: 0}
-  _animationEventsReader: {fileID: 0}
+  _attackController: {fileID: 1332024194}
+  _animationEventsReader: {fileID: 2040483825}
   _target: {fileID: 1000243095}
+  _playerMovementController: {fileID: 1332024190}
 --- !u!114 &1332024190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,6 +1604,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1baadfbfc794bd2a335a849316fa343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1332024194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332024188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2a27f2875b47a2bb6dd198fbdaa486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackDelay: 1
+  _searchEnemyRadius: 6
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1365695907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,6 +2138,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2040483824}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5388a96810e39c24cbb814e5fde1f51f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2040483825}
   m_SourcePrefab: {fileID: 100100000, guid: 5388a96810e39c24cbb814e5fde1f51f, type: 3}
 --- !u!4 &2040483820 stripped
 Transform:
@@ -2146,10 +2190,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2040483823}
   _attackAnimation:
-    name: 
+    name: Attack
     transitionTime: 0.2
-    layer: 0
+    layer: 1
     transitionType: 2
+--- !u!114 &2040483825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040483821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f130802eb22640c990f6da0e9d898552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2055820448
 GameObject:
   m_ObjectHideFlags: 0

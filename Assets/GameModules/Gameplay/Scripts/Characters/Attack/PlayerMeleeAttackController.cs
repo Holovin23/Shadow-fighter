@@ -61,7 +61,6 @@ namespace GameModules.Gameplay.Scripts.Characters
             if(!_isReadyAttack)
                 return;
             
-            Debug.Log("Attacked");
             lastAttackTime = Time.time;
             _isReadyAttack = false;
 
