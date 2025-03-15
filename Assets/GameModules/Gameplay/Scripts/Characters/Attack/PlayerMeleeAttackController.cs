@@ -9,9 +9,8 @@ namespace GameModules.Gameplay.Scripts.Characters
 {
     public class PlayerMeleeAttackController : AttackController
     {
-        [SerializeField] private List<TriggerArea> _triggerAreas = new List<TriggerArea>();
+        [SerializeField] private List<TriggerCaster> _triggerAreas = new List<TriggerCaster>();
         [SerializeField] private  List<StayColliderTrigger> _meleeClosestEnemiesDetector = new List<StayColliderTrigger>();
-        [SerializeField] private float _attackDelay = 1f;
 
         private IAnimatorProvider _animatorProvider;
         private IAnimatorReader _animatorReader;
@@ -45,9 +44,9 @@ namespace GameModules.Gameplay.Scripts.Characters
             }
         }
 
-        public void AddTriggerArea(TriggerArea triggerArea)
+        public void AddTriggerArea(TriggerCaster triggerCaster)
         {
-            _triggerAreas.Add(triggerArea);
+            _triggerAreas.Add(triggerCaster);
         }
 
         public void AddStayColliderTrigger(StayColliderTrigger stayColliderTrigger)
@@ -75,8 +74,7 @@ namespace GameModules.Gameplay.Scripts.Characters
                 {
                     _colliderService.GetCharacter(collider, out Character character);
                     if (character != null && !character.IsDead)
-                        character.HandleDamage(new DamageData(_ownerCharacter.transform, 10));
-                    Debug.Log(character.gameObject.name);
+                        character.Damageable.HandleDamage(new DamageData(_ownerCharacter.transform, 10));
                 }
             }
         }

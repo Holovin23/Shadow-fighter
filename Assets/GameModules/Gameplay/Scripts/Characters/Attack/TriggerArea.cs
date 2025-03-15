@@ -1,126 +1,40 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GameModules.Gameplay.Scripts.Characters
 {
+    [RequireComponent(typeof(Collider))]
     public class TriggerArea : MonoBehaviour
-{
-    [SerializeField] private List<CastPointInfo> castPoints;
-    [SerializeField] private LayerMask interactionLayer;
-    [SerializeField] private int maxColliders;
-
-    private Collider[] colliders;
-
-    private void Start()
     {
-        colliders = new Collider[maxColliders];
-    }
-#if UNITY_EDITOR
-    
-    private void OnValidate()
-    {
-        for (int i = 0; i < castPoints.Count; i++)
-        {
-            if (!castPoints[i].isInited)
-            {
-                GameObject gO = new GameObject("Sphere");
-                gO.transform.parent = transform;
-
-                castPoints[i].transform = gO.transform;
-                EditorUtility.SetDirty(gO);
-
-                castPoints[i].radius = 1;
-
-                castPoints[i].isInited = true;
-            }
-        }
-    }
-    
-#endif
-
-    public HashSet<Collider> Cast()
-    {
-        HashSet<Collider> hits = new HashSet<Collider>();
-
-
-        for (int i = 0; i < castPoints.Count; i++)
-        {
-            var collCount = CastSphere(castPoints[i].transform.position, castPoints[i].radius, interactionLayer, out Collider[] overlapHit);
-            if (collCount>0)
-            {
-                for (int j = 0; j < collCount; j++)
-                {
-                    hits.Add(overlapHit[j]);
-                }
-            }
-        }
-        return hits;
-    }
-
-    public void TryCollectCollidersForTime(float time, Action<HashSet<Collider>> CollidersList)
-    {
-        StartCoroutine(CollectColliders(time, CollidersList));
-    }
-
-
-    private IEnumerator CollectColliders(float time, Action<HashSet<Collider>> CollidersList)
-    {
-        HashSet<Collider> hits = new HashSet<Collider>();
+        public event Action<Collider> OnEnter;
+        public event Action<Collider> OnExit;
         
-        var currentTime = time;
-        while (currentTime > 0)
-        {
-            currentTime -= Time.deltaTime;
-            
-            for (int i = 0; i < castPoints.Count; i++)
-            {
-                var collCount = CastSphere(castPoints[i].transform.position, castPoints[i].radius, interactionLayer, out Collider[] overlapHit);
-                if (collCount>0)
-                {
-                    for (int j = 0; j < collCount; j++)
-                    {
-                        hits.Add(overlapHit[j]);
-                    }
-                }
-            }
+        [SerializeField] private Collider trigger;
+        [SerializeField] private bool useLayerFilter;
+        [SerializeField, ShowIf(nameof(useLayerFilter))] private LayerMask targetLayer;
 
-            CollidersList.Invoke(hits);
-            yield return new WaitForSeconds(0.5f);
+        public Collider Trigger => trigger;
+
+        private void OnValidate()
+        {
+            trigger ??= GetComponent<Collider>();
+            trigger.isTrigger = true;
         }
 
-        yield break;
-    }
-
-    public int CastSphere(Vector3 position, float radius, LayerMask layer, out Collider[] hits)
-    {
-        hits = colliders;
-        int hitCount = Physics.OverlapSphereNonAlloc(position, radius, colliders, layer);
-        return hitCount;
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < castPoints.Count; i++)
+        private void OnTriggerEnter(Collider other)
         {
-            if (castPoints[i].isInited)
-            {
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawWireSphere(castPoints[i].transform.position, castPoints[i].radius);
-            }
+            if (IsTargetedLayerFilter(other))
+                OnEnter?.Invoke(other);
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (IsTargetedLayerFilter(other))
+                OnExit?.Invoke(other);
+        }
+
+        private bool IsTargetedLayerFilter(Collider other) => 
+            useLayerFilter && (targetLayer.value & (1 << other.gameObject.layer)) != 0;
     }
-}
-
-[System.Serializable]
-public class CastPointInfo
-{
-    public bool isInited;
-    public Transform transform;
-
-    public float radius;
-}
 }

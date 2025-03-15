@@ -1,16 +1,23 @@
 using System.Collections;
+using System.Collections.Generic;
+using GameModules.Gameplay.Scripts.Characters;
 using GameModules.Gameplay.Scripts.Characters.AnimatorsScripts;
+using GameModules.Gameplay.Scripts.Characters.Damage;
+using GameModules.Gameplay.Scripts.Characters.Stats;
+using GameModules.Gameplay.Scripts.Factories;
+using GameModules.Gameplay.Scripts.Projectiles;
+using Pooling;
 using UnityEngine;
 using Zenject;
 
-namespace GameModules.Gameplay.Scripts.Characters
+public class RangedPlayerAttackController : AttackController
 {
-    public class RangedPlayerAttackController : AttackController
-    {
         [Inject] private IColliderService _colliderService;
-        [SerializeField] private float _attackDelay = 1f;
+        [Inject] private IDamageGenerator _damageGeneratorService;
+        [Inject] private IPoolService _poolService;
         [SerializeField] private float _searchEnemyRadius = 6f;
         [SerializeField] private LayerMask _enemyLayer;
+        [SerializeField] public Projectile _projectilePrefab;
         
         private IAnimatorProvider _animatorProvider;
         private IAnimatorReader _animatorReader;
@@ -20,6 +27,7 @@ namespace GameModules.Gameplay.Scripts.Characters
         private Character _currentTarget;
         private Coroutine _updateRoutine;
         private Collider[] _resultArray = new Collider[100];
+        private ProjectilesFactory projectilesFactory;
         
         private IEnumerator UpdateRoutine()
         {
@@ -71,8 +79,9 @@ namespace GameModules.Gameplay.Scripts.Characters
 
         private void Shoot()
         {
-            Debug.Log("Shootings to ");
-           // _currentTarget
+            var interactionData = new InteractionData(_ownerCharacter.Owner.transform, null);
+            var damageData = _damageGeneratorService.Generate(_ownerCharacter.StatsProvider, interactionData);
+            Attack(interactionData, damageData);
         }
 
         private bool IsAvailableTarget(out Character enemy)
@@ -131,5 +140,32 @@ namespace GameModules.Gameplay.Scripts.Characters
             _animatorProvider.StopAttack();
         }
         
-    }
+        #region Attack
+
+        public void Attack(IInteractionData interactionData, IDamageData damageData)
+        {
+            SaveAttackTime();
+            SpawnProjectile(interactionData, damageData);
+        }
+        
+
+        protected void SpawnProjectile(IInteractionData interactionData, IDamageData damageData)
+        {
+            projectilesFactory.Create(damageData, OnProjectileCreated);
+
+            void OnProjectileCreated(List<IProjectile> projectiles)
+            {
+                foreach (var projectile in projectiles)
+                    projectile.OnSpawn(interactionData);
+            }
+        }
+        
+        public override void SetupProjectilesSpawner(ProjectilesSpawnHelper projectilesSpawnHelper) =>
+            projectilesFactory = new ProjectilesFactory(_poolService,_ownerCharacter.StatsProvider, _projectilePrefab, projectilesSpawnHelper);
+        
+        private void SaveAttackTime() =>
+            lastAttackTime = Time.time;
+
+        #endregion
+        
 }

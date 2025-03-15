@@ -1,4 +1,5 @@
 using System;
+using GameModules.Gameplay.Scripts.Characters.Health;
 using UnityEngine;
 
 namespace GameModules.Gameplay.Scripts.Characters.Damage
@@ -10,7 +11,6 @@ namespace GameModules.Gameplay.Scripts.Characters.Damage
 
         public Transform Owner { get; }
         public bool IsDead { get; }
-        
-        public void HandleDamage(IDamageData damageData);
+        public void HandleDamage(Damageable damageable, IDamageData damageData);
     }
 }

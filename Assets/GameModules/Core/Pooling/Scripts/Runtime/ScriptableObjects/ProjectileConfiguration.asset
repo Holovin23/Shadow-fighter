@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568b7beb93094e53ad51528c4e91a249, type: 3}
+  m_Name: ProjectileConfiguration
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3459022503571911942, guid: b55f8921e921d1e4391e373ad6509277, type: 3}
+  Capacity: 1000
+  Preload: 15
+  Recycle: 0
+  Prefab: {fileID: 3972834394938659476, guid: b55f8921e921d1e4391e373ad6509277, type: 3}
+  FactoryTypeSerialized: Pooling.PoolableItemFactory, 24PlayPooling.Runtime, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null

@@ -14,16 +14,20 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
     [SerializeField] private StatsConfig _stats;
     [SerializeField] private AttackController _attackController;
     [SerializeField] private CombatAnimationEventsReader _animationEventsReader;
+    [SerializeField] private Damageable _damageable;
+    [SerializeField] private ProjectilesSpawnHelper _projectilesSpawnHelper;
     
     protected IAnimatorProvider _animator;
     public event Action<IDamageable> OnDeath;
     public event Action<IDamageable, IDamageData> OnHit;
     public Transform Owner => transform;
     public bool IsDead { get; private set; }
+
     public IStatsProvider StatsProvider { get; private set; }
     public IHealthProvider HealthProvider => _health;
     public IAnimatorProvider AnimatorProvider => _animator;
     public IAnimatorReader AnimationEventsReader => _animationEventsReader;
+    public Damageable Damageable => _damageable;
     
     private void Start()
     {
@@ -36,7 +40,9 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
         _health.Initialize(StatsProvider.GetStat(StatType.Health));
         _animator = GetComponentInChildren<IAnimatorProvider>();
         _attackController.Initialize(this);
+        _attackController.SetupProjectilesSpawner(_projectilesSpawnHelper);
         HealthProvider.OnDeathValue += OnDeathValue;
+        _damageable.OnHit += HandleDamage;
     }
 
     protected virtual void OnDeathValue(IHealthProvider value)
@@ -44,7 +50,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealthOwner, ISta
         OnDeath?.Invoke(this);
     }
     
-    public virtual void HandleDamage(IDamageData damageData)
+    public virtual void HandleDamage(Damageable damageble, IDamageData damageData)
     {
         HealthProvider.Remove((int)damageData.GetDamageValue());
         OnHit?.Invoke(this, damageData);
