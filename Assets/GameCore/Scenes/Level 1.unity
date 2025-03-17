@@ -562,7 +562,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207411176}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55d5305618e445299f3e93ec9d7ba88, type: 3}
   m_Name: 
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   MainGlueBlend: 1
   GlueRangeThreshold: 0.5
   GlueFadeInSpeed: 0.85
-  AllowGlueBelowFoot: 0.2
+  AllowGlueBelowFoot: 0.39
   GlueFadeOutSpeed: 0.5
   UnglueOn: 30
   AllowGlueDrag: 0.6
@@ -1764,11 +1764,11 @@ MonoBehaviour:
   AnimationFloorLevel: 0.001
   _Editor_Foldout_Setup_LegsList: 1
   _Editor_EnsureCount: 0
-  _Editor_OnValidateTrigger: 0
+  _Editor_OnValidateTrigger: 1
   _EditorAllowAutoUpdateFeetParams: 1
-  _EditorCategory: 0
+  _EditorCategory: 1
   _EditorSetupCategory: 0
-  _EditorMotionCategory: 0
+  _EditorMotionCategory: 2
   _EditorExtraCategory: 0
   IKHintMode: 0
   LimitLegStretch: 0.99
@@ -3270,6 +3270,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 381309298, guid: 90554ee61834e464884310dda1810c9f, type: 3}
+      propertyPath: _poolConfigs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 381309298, guid: 90554ee61834e464884310dda1810c9f, type: 3}
+      propertyPath: _poolConfigs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b82b1ebdf2723c1479e988e0ddaf36da,
+        type: 2}
     - target: {fileID: 590787336790333392, guid: 90554ee61834e464884310dda1810c9f,
         type: 3}
       propertyPath: _monoInstallers.Array.size
