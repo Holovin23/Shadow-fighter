@@ -16,8 +16,8 @@ TagManager:
   - Projectile
   - Enemy
   - Enemy_Projectile
-  - 
-  - 
+  - Lootable
+  - PlayerLoot
   - 
   - 
   - 

@@ -16,6 +16,16 @@ namespace GameModules.Gameplay.Scripts.Characters
 
         public Collider Trigger => trigger;
 
+        public void Disable()
+        {
+            trigger.enabled = false;
+        }
+        
+        public void Enable()
+        {
+            trigger.enabled = true;
+        }
+        
         private void OnValidate()
         {
             trigger ??= GetComponent<Collider>();

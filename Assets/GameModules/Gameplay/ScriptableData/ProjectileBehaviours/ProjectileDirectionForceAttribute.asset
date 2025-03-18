@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92d2e88f953447093181912b937007f, type: 3}
   m_Name: ProjectileDirectionForceAttribute
   m_EditorClassIdentifier: 
-  speedValue: 0
+  speedValue: 20

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96cd67de2f34978b063c5d690e5d4df, type: 3}
   m_Name: ProjectileLineForceAttribute
   m_EditorClassIdentifier: 
-  speedValue: 4
+  speedValue: 20

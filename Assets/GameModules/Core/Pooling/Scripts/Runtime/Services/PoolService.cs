@@ -41,7 +41,7 @@ namespace Pooling
             _links.Add(item.gameObject, pool);
             return item;
         }
-
+   
         public T Spawn<T>(T prefab, Transform parent) where T : Component
         {
             T item = Spawn(prefab);
