@@ -9,7 +9,6 @@ namespace GameModules.Gameplay.Scripts.Lootable
 {
     public class ExperienceDrop : Drop
     {
-        [Inject] private IPoolService _poolService;
         [SerializeField] private TriggerArea _triggerArea;
         [SerializeField] private Transform _lootVisual;
 
@@ -39,12 +38,12 @@ namespace GameModules.Gameplay.Scripts.Lootable
             _triggerArea.OnEnter -= OnCollisionDetected;
             _triggerArea.Disable();
             PlaySuckInAnimation(obj);
-            Debug.Log("Pick up expirience");
+            Debug.Log("Pick up expirience" + _count);
         }
 
         private void PlaySuckInAnimation(Collider collider)
         {
-           _lootVisual.transform.DOMove(collider.transform.position, 0.5f).OnComplete( () => _poolService.Despawn(this)); 
+           _lootVisual.transform.DOMove(collider.transform.position, 0.5f).OnComplete(OnDespawn); 
         }
     }
 }

@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 590787336790333392}
   - component: {fileID: 1181742745565867308}
   - component: {fileID: 3349880326118882521}
+  - component: {fileID: 6236480611587736798}
   m_Layer: 0
   m_Name: GameSceneContext
   m_TagString: Untagged
@@ -81,6 +82,7 @@ Transform:
   m_Children:
   - {fileID: 3565493097426172167}
   - {fileID: 381309299}
+  - {fileID: 1616734281359360417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &590787336790333392
@@ -99,6 +101,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 1181742745565867308}
   - {fileID: 3349880326118882521}
+  - {fileID: 6236480611587736798}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -141,6 +144,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolService: {fileID: 381309298}
+--- !u!114 &6236480611587736798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590787336790333393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf100e50d834fb8a8f8eac4565fc466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dropService: {fileID: 68110643874803493}
+--- !u!1 &1245811373068736876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616734281359360417}
+  - component: {fileID: 68110643874803493}
+  m_Layer: 0
+  m_Name: DropService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616734281359360417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245811373068736876}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 590787336790333395}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &68110643874803493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245811373068736876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef93bd79738347e1996f2760b4a185ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _experienceDropPrefab: {fileID: 809332156010105920, guid: 72d34d67d5f842441b46347a74298c8e,
+    type: 3}
 --- !u!1 &1717624147969364406
 GameObject:
   m_ObjectHideFlags: 0
