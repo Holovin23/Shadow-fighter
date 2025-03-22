@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36dd42ee0c6425f845550b94b6fc203, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
+  _levelUpgrades:
+  - upgradeNumber: 4
+    requireExp: 50
+    upgrades: []
   waves:
   - enemies:
     - {fileID: 267134478516385465, guid: 9912862187fa74b4889c3f4b43426ba6, type: 3}

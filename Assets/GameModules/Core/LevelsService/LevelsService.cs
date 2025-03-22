@@ -1,4 +1,5 @@
 using System;
+using GameModules.Gameplay.Scripts.GameLoop;
 using TFPlay.Modules.SaveLoadSystem;
 using TFPlay.Modules.SaveLoadSystem.Data;
 using TFPlay.Infrastructure.StateMachine.Application;
@@ -15,7 +16,7 @@ namespace TFPlay.Modules.Levels
         public Action OnProressChanged;
 
         private int LevelsCount = SceneManager.sceneCountInBuildSettings - 1;
-
+        private AllLevelsData _allLevelsData;
         public int CurrentLevel
         {
             get => _currentLevel;
@@ -28,10 +29,11 @@ namespace TFPlay.Modules.Levels
 
         private int _currentLevel;
 
-        public LevelsService(ISaveLoadSystem saveLoadSystem, ApplicationStateMachine applicationStateMachine)
+        public LevelsService(ISaveLoadSystem saveLoadSystem, ApplicationStateMachine applicationStateMachine, AllLevelsData allLevelsData)
         {
             _saveLoadSystem = saveLoadSystem;
             _applicationStateMachine = applicationStateMachine;
+            _allLevelsData = allLevelsData;
         }
 
         public void Initialize()

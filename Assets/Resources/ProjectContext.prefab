@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneFaderController: {fileID: 1387256107590176465}
+  _allLevelsData: {fileID: 11400000, guid: 11db98ed9e4a810409364166e9b04c1b, type: 2}
 --- !u!114 &8853497717698837705
 MonoBehaviour:
   m_ObjectHideFlags: 0

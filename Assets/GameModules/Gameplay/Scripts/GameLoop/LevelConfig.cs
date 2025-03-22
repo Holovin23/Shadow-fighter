@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Core.Upgrades;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GameModules.Gameplay.Scripts.GameLoop
 {
     [CreateAssetMenu(menuName = "ScriptableObject/LevelConfig" , fileName = nameof(LevelConfig))]
     public class LevelConfig : ScriptableObject
     {
+        [SerializeField] private List<LevelUpgradesData> _levelUpgrades;
         [SerializeField] public List<WaveData> waves;
         [SerializeField] public float timeToFirstWave;
     }
