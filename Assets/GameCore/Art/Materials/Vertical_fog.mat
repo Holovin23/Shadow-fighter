@@ -39,6 +39,8 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_903BA607: 3
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _Horizon_distance: 1
     - _QueueControl: 0
     - _QueueOffset: 0
