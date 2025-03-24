@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.DemiLib;
 using GameModules.Gameplay.Scripts.Characters.AnimatorsScripts;
 using GameModules.Gameplay.Scripts.Characters.Damage;
 using TFPlay.SceneFader;
@@ -21,10 +22,10 @@ namespace GameModules.Gameplay.Scripts.Characters
             if (Time.time - lastAttackTime >= _attackDelay && !_isReadyAttack)
             {
                 _isReadyAttack = true;
-                lastAttackTime = Time.time;
-                _isReadyAttack = false;
+                //lastAttackTime = Time.time;
+                //_isReadyAttack = false;
 
-                _animatorProvider.StartAttack();
+                //_animatorProvider.StartAttack();
             }
         }
 
@@ -42,6 +43,7 @@ namespace GameModules.Gameplay.Scripts.Characters
             {
                 enterTrigger.OnInteraction += EnemyInMeleeRangeAttackRange;
             }
+            _isReadyAttack = true;
         }
 
         public void AddTriggerArea(TriggerCaster triggerCaster)
@@ -57,6 +59,7 @@ namespace GameModules.Gameplay.Scripts.Characters
         
         private void EnemyInMeleeRangeAttackRange(Collider obj)
         {
+            Debug.Log("Enemy in melee range");
             if(!_isReadyAttack)
                 return;
             
