@@ -57,7 +57,7 @@ namespace TFPlay.Modules.Levels
             CurrentLevel = level;
             _applicationStateMachine.Enter<LoadingSceneApplicationState, int>(GetLevelScene(CurrentLevel));
         }
-
+        
         private void Save()
         {
             _saveLoadSystem.GetData<LevelsSaveData>(SaveDataIds.LEVELS).Level = CurrentLevel;

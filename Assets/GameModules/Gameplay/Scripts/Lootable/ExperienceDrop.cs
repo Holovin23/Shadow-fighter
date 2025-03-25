@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using GameModules.Gameplay.Scripts.Characters;
+using GameModules.Gameplay.Scripts.GameLoop;
 using Pooling;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,7 @@ namespace GameModules.Gameplay.Scripts.Lootable
 {
     public class ExperienceDrop : Drop
     {
+        [Inject] private IExperienceService _experienceService;
         [SerializeField] private TriggerArea _triggerArea;
         [SerializeField] private Transform _lootVisual;
 
@@ -38,6 +40,7 @@ namespace GameModules.Gameplay.Scripts.Lootable
             _triggerArea.OnEnter -= OnCollisionDetected;
             _triggerArea.Disable();
             PlaySuckInAnimation(obj);
+            _experienceService.AddExperience(_count);
             Debug.Log("Pick up expirience" + _count);
         }
 
