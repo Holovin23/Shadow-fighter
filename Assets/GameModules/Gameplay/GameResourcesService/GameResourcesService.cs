@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SimpleSave.SerializableTypes;
 using TFPlay.Modules.SaveLoadSystem;
 using Zenject;
 
@@ -62,7 +63,7 @@ namespace TFPlay.Modules.GameResources
             if (saveData.resources == null)
                 return;
 
-            _resources = saveData.resources.GetDictionary();
+            _resources = saveData.resources.ToDictionary();
 
             _signalBus.Fire(new AllResourcesUpdateSignal { ResourcesValues = GetAllResources() });
         }

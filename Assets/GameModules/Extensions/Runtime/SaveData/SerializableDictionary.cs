@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Serialization;
 
-[System.Serializable]
+/*[System.Serializable]
 public class SerializableDictionary<TKey, TValue>
-{
+//{
     public List<TKey> Keys;
     public List<TValue> Values;
 
@@ -23,5 +23,5 @@ public class SerializableDictionary<TKey, TValue>
             result[Keys[i]] = Values[i];
 
         return result;
-    }
-}
+    }*/
+//}

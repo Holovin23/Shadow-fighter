@@ -9,8 +9,8 @@ namespace Pooling
         
         public override void InstallBindings()
         {
-            Container.Bind<IPoolService>().FromInstance(_poolService).AsSingle();
             Container.Bind<PoolFactories>().AsSingle();
+            Container.Bind<IPoolService>().FromInstance(_poolService).AsSingle();
         }
     }
 }

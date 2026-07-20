@@ -7,7 +7,7 @@ namespace GameModules.Gameplay.Scripts.GameLoop
     public class ExperienceService : IExperienceService
     {
         [Inject] 
-        private LevelsService _levelsService;
+        private ILevelsService _levelsService;
         public event Action<int, int> OnExperienceChange;
         public event Action<int, int> OnLevelUp;
         

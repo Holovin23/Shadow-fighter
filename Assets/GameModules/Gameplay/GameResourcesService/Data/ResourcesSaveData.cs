@@ -1,4 +1,5 @@
 using System;
+using SimpleSave.SerializableTypes;
 using TFPlay.Modules.SaveLoadSystem;
 
 namespace TFPlay.Modules.GameResources
